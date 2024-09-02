@@ -16,7 +16,7 @@ y = df_train["Survived"].values
 X_eval = df_test[["Pclass","male","Parch","SibSp"]].values
 print(X_eval)
 print(X)
-#splitting the training dataset into train andbtest and test data
+#splitting the training dataset into train and test and test data
 X_train, X_test, y_train, y_test = train_test_split(X,y, random_state=5)
 #training the model 
 model = LogisticRegression()
@@ -33,7 +33,8 @@ print(accuracy_score(y_test, y_pred))
 prediction = model.predict(X_eval)
 
 print(prediction)
-test_ids = df_test["PassengerId"].values
 
+#Creates a csv file of the predicted data
+test_ids = df_test["PassengerId"].values
 df = pd.DataFrame({"PassengerId": test_ids,"Survived": prediction})
 df.to_csv("Submission.csv", index= False)
